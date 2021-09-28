@@ -117,9 +117,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"main.js":[function(require,module,exports) {
-var app = new Vue({
-  el: '#app',
+})({"vueComponent.js":[function(require,module,exports) {
+Vue.component('product', {
+  template: "\n        <div class=\"ExclusiveProduct\">\n        <div class=\"product-image\">\n            <img v-bind:src=\"image\" >\n        </div>\n        <div class=\"product-info\">\n\n            <h1> {{ brandName }} {{ product }} </h1>\n            <p v-if=\"inStock\">In Stock</p>\n            <p v-else>Out of Stock</p>\n\n            <ul>\n                <li v-for=\"detail in details\">{{ detail }}</li>\n            </ul>\n\n            <div v-for=\"variant in modified\" \n                :key=\"variant.modifiedId\"\n                class=\"color-box\"\n                :style=\"{backgroundColor: variant.modifiedColor}\"\n                @mouseover=\"updateProduct(variant.modifiedImage)\">  \n            </div>\n\n            <button v-on:click=\"addToCart\" \n                :disabled=\"!inStock\"\n                :class=\"{ disabledButton: !inStock }\"> Add to Cart</button>\n            \n            <div class=\"cart\">\n                <p>Cart({{cart}})</p>\n            </div>\n\n        </div>\n\n        </div>\n    ",
   data: {
     brandName: 'FM',
     product: 'Socks',
@@ -147,13 +147,16 @@ var app = new Vue({
     },
     updateProduct: function updateProduct(modifiedImage) {
       this.image = modifiedImage;
-    },
-    computed: {
-      title: function title() {
-        return this.brandName + ' ' + this.product;
-      }
+    }
+  },
+  computed: {
+    title: function title() {
+      return this.brandName + ' ' + this.product;
     }
   }
+});
+var app = new Vue({
+  el: '#app'
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -359,5 +362,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=/main.1f19ae8e.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","vueComponent.js"], null)
+//# sourceMappingURL=/vueComponent.527aace2.js.map
